@@ -38,7 +38,7 @@ app.get('/barcodes.pdf', async (req, res) => {
         path: "barcode_pdf_format.pdf",
         format: "A4"
     });
-    res.json("localhost:5000/barcode_pdf_format.pdf")
+    res.json("http://localhost:5000/barcode_pdf_format.pdf")
 })
 
 app.get('/barcode_pdf_format.pdf', async (req, res) => {
