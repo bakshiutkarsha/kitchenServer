@@ -35,10 +35,19 @@ app.get('/barcodes.pdf', async (req, res) => {
     });
     await page.setViewport({ width: 1680, height: 1050 });
     await page.pdf({
-        path: "barcodes.pdf",
+        path: "barcode_pdf_format.pdf",
         format: "A4"
     });
-    //res.json(`${site}/barcodes.pdf`)
+    res.json("localhost:5000/barcode_pdf_format.pdf")
+})
+
+app.get('/barcode_pdf_format.pdf', async (req, res) => {
+    var file = fs.createReadStream('./barcode_pdf_format.pdf');
+    var stat = fs.statSync('./barcode_pdf_format.pdf');
+    res.setHeader('Content-Length', stat.size);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=receipts.pdf');
+    file.pipe(res);
 })
 
 const getBarcodeData = () => {
